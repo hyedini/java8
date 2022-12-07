@@ -7,19 +7,10 @@ import java.util.stream.IntStream;
 public class App {
 
     public static void main(String[] args) {
-        int size = 1500;
-        int[] numbers = new int[size];
-        Random random = new Random();
+        // 순수함수 지향 (함수 밖에 있는 값을 변경하지 못한다)
+        RunSomething runSomething = (number) -> number+10;
 
-        IntStream.range(0, size).forEach(i -> numbers[i] = random.nextInt());
-        long start = System.nanoTime();
-        Arrays.sort(numbers);
-        System.out.println("serial sorting took " + (System.nanoTime() - start));
-
-        IntStream.range(0, size).forEach(i -> numbers[i] = random.nextInt());
-        start = System.nanoTime();
-        Arrays.parallelSort(numbers);
-        System.out.println("parallel sorting took " + (System.nanoTime() - start));
+        System.out.println(runSomething.doIt(1));
 
     }
 
